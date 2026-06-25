@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лидия Бобкова · Куратор Код будущего</title>
+    <!-- Стиль "славик герл" — нежный, яркий, с глитчем и анимациями -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #fce4ec; /* нежно-розовый фон по умолчанию */
+        }
+
+        /* карточка-обёртка в стиле славик герл: глянец, скругления, тени */
+        .slavic-girl-card {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 245, 247, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 56px 56px 56px 56px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2),
+                        0 0 0 2px #f8bbd0 inset,
+                        0 0 0 4px #ffffff80 inset;
+            border: 1px solid #f48fb1;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* темы: светлая / тёмная / славик-гламур */
+        body.light {
+            background: #fce4ec;
+        }
+        body.light .slavic-girl-card {
+            background: rgba(255, 245, 247, 0.8);
+            border-color: #f48fb1;
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15), 0 0 0 2px #f8bbd0 inset;
+        }
+        body.dark {
+            background: #1a1a2e;
+        }
+        body.dark .slavic-girl-card {
+            background: rgba(30, 25, 45, 0.85);
+            backdrop-filter: blur(8px);
+            border-color: #b39ddb;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 2px #7e57c2 inset;
+            color: #f3e5f5;
+        }
+        body.dark .slavic-girl-card h1,
+        body.dark .slavic-girl-card h2,
+        body.dark .slavic-girl-card p,
+        body.dark .slavic-girl-card li {
+            color: #f3e5f5;
+        }
+        body.dark .slavic-girl-card .review-item {
+            background: #2a2340;
+            border-color: #7e57c2;
+        }
+        body.dark .slavic-girl-card input,
+        body.dark .slavic-girl-card textarea {
+            background: #2a2340;
+            color: #f3e5f5;
+            border-color: #7e57c2;
+        }
+        body.dark .slavic-girl-card .theme-btn {
+            background: #4a3a6a;
+            color: #f3e5f5;
+            border-color: #9575cd;
+        }
+        body.dark .slavic-girl-card .theme-btn:hover {
+            background: #6a4a8a;
+        }
+
+        /* гламурная тема — extra славик */
+        body.glam {
+            background: #f3c4d6;
+        }
+        body.glam .slavic-girl-card {
+            background: rgba(255, 215, 225, 0.7);
+            backdrop-filter: blur(4px);
+            border-color: #ec407a;
+            box-shadow: 0 20px 50px #ec407a55, 0 0 0 3px #f8bbd0 inset, 0 0 0 6px #ffffffaa inset;
+        }
+        body.glam .slavic-girl-card h1 {
+            text-shadow: 0 0 12px #f48fb1, 0 0 30px #f06292;
+        }
+
+        /* типографика */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+            text-shadow: 2px 2px 10px rgba(233, 30, 99, 0.3);
+        }
+        body.dark h1 {
+            background: linear-gradient(135deg, #ce93d8, #b39ddb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #880e4f;
+            margin: 1.5rem 0 0.8rem 0;
+            border-bottom: 3px dashed #f48fb1;
+            padding-bottom: 6px;
+            display: inline-block;
+        }
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #6a1b4d;
+            margin-top: -0.2rem;
+            margin-bottom: 1rem;
+            background: #f8bbd080;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+        }
+        .highlight {
+            background: #fce4ec;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        /* кнопки смены темы */
+        .theme-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 16px 0;
+            justify-content: flex-start;
+        }
+        .theme-btn {
+            background: white;
+            border: 2px solid #f48fb1;
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #880e4f;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.15);
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .theme-btn:hover {
+            transform: scale(1.03);
+            background: #fce4ec;
+            box-shadow: 0 8px 20px #f0629250;
+        }
+        .theme-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* блоки */
+        .bio {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem 1.5rem;
+            background: #ffffff50;
+            backdrop-filter: blur(4px);
+            padding: 1rem 1.8rem;
+            border-radius: 120px;
+            margin: 16px 0 20px 0;
+            border: 1px solid #f8bbd0;
+        }
+        .bio p {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #4a1a2e;
+        }
+        .bio i {
+            font-style: italic;
+            background: #f0629220;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .qualities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 12px 0 20px 0;
+            list-style: none;
+        }
+        .qualities li {
+            background: #fce4ec;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #880e4f;
+            border: 1px solid #f48fb1;
+            box-shadow: 0 2px 8px #f0629220;
+            backdrop-filter: blur(2px);
+        }
+        body.dark .qualities li {
+            background: #3a2a5a;
+            color: #d1c4e9;
+            border-color: #9575cd;
+        }
+
+        /* отзывы */
+        .reviews-section {
+            margin: 30px 0 20px 0;
+        }
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-height: 240px;
+            overflow-y: auto;
+            padding-right: 8px;
+            margin: 12px 0 18px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #f48fb1 #fce4ec;
+        }
+        .review-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .review-list::-webkit-scrollbar-track {
+            background: #fce4ec;
+            border-radius: 20px;
+        }
+        .review-list::-webkit-scrollbar-thumb {
+            background: #f48fb1;
+            border-radius: 20px;
+        }
+
+        .review-item {
+            background: #ffffffb0;
+            backdrop-filter: blur(2px);
+            padding: 14px 20px;
+            border-radius: 50px 20px 50px 20px;
+            border-left: 8px solid #f06292;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.08);
+            font-size: 1rem;
+            color: #3e1a2b;
+            word-break: break-word;
+        }
+        .review-item strong {
+            color: #ad1457;
+        }
+        .review-item small {
+            display: block;
+            margin-top: 6px;
+            color: #7a4b5e;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* форма отзыва */
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .review-form input,
+        .review-form textarea {
+            padding: 14px 18px;
+            border-radius: 60px;
+            border: 2px solid #f8bbd0;
+            background: #ffffffd0;
+            backdrop-filter: blur(4px);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+            color: #1a1a2e;
+        }
+        .review-form input:focus,
+        .review-form textarea:focus {
+            border-color: #ec407a;
+            box-shadow: 0 0 0 4px #f0629230;
+        }
+        .review-form textarea {
+            border-radius: 30px;
+            resize: vertical;
+            min-height: 70px;
+        }
+        .review-form button {
+            align-self: flex-start;
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 12px 38px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px #d81b6050;
+            transition: 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .review-form button:hover {
+            background: #ad1457;
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px #ad145770;
+        }
+        .review-form button:active {
+            transform: scale(0.95);
+        }
+
+        /* футер */
+        .footer-note {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6a1b4d;
+            border-top: 2px dotted #f48fb1;
+            padding-top: 18px;
+            opacity: 0.8;
+        }
+        body.dark .footer-note {
+            color: #b39ddb;
+            border-top-color: #7e57c2;
+        }
+
+        /* адаптив */
+        @media (max-width: 600px) {
+            .slavic-girl-card {
+                padding: 1.5rem 1.2rem;
+                border-radius: 32px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .bio {
+                border-radius: 40px;
+                padding: 0.8rem 1.2rem;
+            }
+            .bio p {
+                font-size: 1rem;
+            }
+            .theme-bar {
+                gap: 8px;
+            }
+            .theme-btn {
+                padding: 6px 16px;
+                font-size: 0.8rem;
+            }
+            .review-item {
+                border-radius: 30px 12px 30px 12px;
+            }
+        }
+    </style>
+</head>
+<body class="light">
+    <div class="slavic-girl-card" id="app">
+        <!-- заголовок -->
+        <h1>✨ Лидия Бобкова</h1>
+        <div class="subhead">💻 Куратор «Код будущего»</div>
+
+        <!-- мотивационная цитата / био -->
+        <div class="bio">
+            <p>🚀 <i>«Мотивирую, помогаю, поддерживаю каждого ученика»</i></p>
+            <span style="margin-left: auto; font-size: 2rem;">🌸</span>
+        </div>
+
+        <!-- качества / суперсилы -->
+        <ul class="qualities">
+            <li>❤️ Забота</li>
+            <li>💪 Мотивация</li>
+            <li>🧠 Наставничество</li>
+            <li>✨ Вдохновение</li>
+            <li>🤝 Поддержка</li>
+        </ul>
+
+        <!-- панель смены темы (славик герл стиль) -->
+        <div class="theme-bar">
+            <button class="theme-btn" data-theme="light">🌸 Нежная</button>
+            <button class="theme-btn" data-theme="dark">🌙 Тёмная</button>
+            <button class="theme-btn" data-theme="glam">💖 Славик Гламур</button>
+        </div>
+
+        <!-- блок отзывов -->
+        <div class="reviews-section">
+            <h2>📝 Отзывы обо мне</h2>
+            <div class="review-list" id="reviewList">
+                <!-- примеры отзывов (заполняются из массива) -->
+            </div>
+
+            <!-- форма добавления отзыва -->
+            <div class="review-form">
+                <input type="text" id="reviewAuthor" placeholder="Ваше имя (или аноним)" value="Ученик">
+                <textarea id="reviewText" placeholder="Напишите тёплые слова... Лидия, вы лучшая! 🌟"></textarea>
+                <button id="addReviewBtn">➕ Оставить отзыв</button>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            🌸 Сделано с любовью • Код будущего • Лидия Бобкова
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // --- данные ---
+            const reviewsData = [
+                { author: 'Алина К.', text: 'Лидия — невероятный куратор! Всегда найдёт слово поддержки, объяснит сложное простым языком. Спасибо за веру в нас! ❤️' },
+                { author: 'Максим П.', text: 'Очень мотивирует и помогает не сдаваться. Благодаря Лидии я полюбил программирование. Супер-куратор!' },
+                { author: 'Екатерина С.', text: 'Поддержка на 100%! Лидия всегда на связи, переживает за каждого ученика. С ней чувствуешь себя уверенно. ✨' },
+            ];
+
+            // --- DOM ---
+            const reviewList = document.getElementById('reviewList');
+            const authorInput = document.getElementById('reviewAuthor');
+            const textInput = document.getElementById('reviewText');
+            const addBtn = document.getElementById('addReviewBtn');
+
+            // --- функции рендера ---
+            function renderReviews() {
+                reviewList.innerHTML = '';
+                // показываем последние 10 (или все)
+                const toShow = reviewsData.slice(-10);
+                toShow.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'review-item';
+                    div.innerHTML = `<strong>${escapeHtml(item.author)}</strong> · ${escapeHtml(item.text)} <small>🕊️ отзыв</small>`;
+                    reviewList.appendChild(div);
+                });
+                // автоскролл вниз (чтобы видеть новые)
+                if (reviewList.scrollTop > reviewList.scrollHeight - reviewList.clientHeight - 40) {
+                    reviewList.scrollTop = reviewList.scrollHeight;
+                }
+            }
+
+            // простая защита от XSS
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            // --- добавление отзыва ---
+            function addReview() {
+                let author = authorInput.value.trim();
+                let text = textInput.value.trim();
+
+                if (!author) author = 'Аноним';
+                if (!text) {
+                    alert('Напишите текст отзыва 😊');
+                    return;
+                }
+
+                reviewsData.push({ author: author, text: text });
+                renderReviews();
+
+                // очищаем поля, но оставляем имя для удобства
+                textInput.value = '';
+                // можно оставить имя, но для быстроты — сбросим до "Ученик"
+                authorInput.value = 'Ученик';
+                // прокрутка вниз
+                reviewList.scrollTop = reviewList.scrollHeight;
+            }
+
+            // --- смена темы (славик герл) ---
+            function setTheme(themeName) {
+                document.body.className = themeName;
+                // сохраняем в localStorage (опционально)
+                try {
+                    localStorage.setItem('slavic-theme', themeName);
+                } catch (e) {}
+            }
+
+            // --- инициализация темы из localStorage ---
+            function loadTheme() {
+                let saved = 'light';
+                try {
+                    const stored = localStorage.getItem('slavic-theme');
+                    if (stored && ['light', 'dark', 'glam'].includes(stored)) {
+                        saved = stored;
+                    }
+                } catch (e) {}
+                setTheme(saved);
+                // подсветка активной кнопки (декоративно)
+                document.querySelectorAll('.theme-btn').forEach(btn => {
+                    if (btn.dataset.theme === saved) {
+                        btn.style.background = '#f06292';
+                        btn.style.color = 'white';
+                        btn.style.borderColor = '#d81b60';
+                    } else {
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        btn.style.borderColor = '';
+                    }
+                });
+            }
+
+            // --- обработчики ---
+            addBtn.addEventListener('click', addReview);
+
+            // добавление по Enter в текстовом поле (но не в textarea)
+            textInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    addReview();
+                }
+            });
+
+            // кнопки тем
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const theme = this.dataset.theme;
+                    setTheme(theme);
+                    // визуальный фидбек
+                    document.querySelectorAll('.theme-btn').forEach(b => {
+                        b.style.background = '';
+                        b.style.color = '';
+                        b.style.borderColor = '';
+                    });
+                    this.style.background = '#f06292';
+                    this.style.color = 'white';
+                    this.style.borderColor = '#d81b60';
+                });
+            });
+
+            // --- старт ---
+            renderReviews();
+            loadTheme();
+
+            // если отзывов нет — добавим стандартные (они уже есть в массиве)
+            // но если хотим, чтобы они отобразились — рендер сделал это
+
+            // дополнительно: клик по карточке – необязательный эффект
+            console.log('🌸 Сайт-визитка Лидии Бобковой в стиле славик герл!');
+        })();
+    </script>
+</body>
+</html>
