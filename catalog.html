@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Чистый Лист</title>
+    <meta name="description" content="Каталог эксклюзивных канцтоваров: ручки, блокноты, наборы и аксессуары.">
+    <meta name="theme-color" content="#b5d0e8">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/catalog.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ========== ШАПКА ========== -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="heart">♡</span>
+                Чистый <span class="accent">Лист</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html" class="active">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="icon">🌙</span> Тёмная
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
+    <main class="container">
+        <div class="catalog-header">
+            <h1>Каталог</h1>
+            <p>Эксклюзивные канцтовары для творчества и вдохновения</p>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="ручки">Ручки</button>
+            <button class="filter-btn" data-filter="блокноты">Блокноты</button>
+            <button class="filter-btn" data-filter="наборы">Наборы</button>
+            <button class="filter-btn" data-filter="аксессуары">Аксессуары</button>
+        </div>
+
+        <!-- Статистика -->
+        <div class="catalog-stats">
+            <span>Показано: <span class="count" id="catalogCount">0</span> товаров</span>
+            <span class="ribbon">✨ Эксклюзивные позиции</span>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div class="catalog-grid" id="catalogGrid"></div>
+
+        <!-- Кнопка "Показать ещё" -->
+        <div class="load-more-container">
+            <button class="btn btn-primary" id="loadMoreBtn">Показать ещё</button>
+        </div>
+    </main>
+
+    <!-- ========== ФУТЕР ========== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span class="heart">♡</span> Чистый Лист — эксклюзивная канцелярия</p>
+        </div>
+    </footer>
+
+    <!-- ========== СКРИПТЫ ========== -->
+    <script src="js/script.js"></script>
+</body>
+</html>

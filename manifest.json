@@ -1,0 +1,23 @@
+{
+  "name": "Чистый Лист — Эксклюзивная канцелярия",
+  "short_name": "Чистый Лист",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f6fc",
+  "theme_color": "#b5d0e8",
+  "description": "Магазин эксклюзивных канцтоваров для вдохновения",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

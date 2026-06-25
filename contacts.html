@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Чистый Лист</title>
+    <meta name="description" content="Свяжитесь с нами: адрес, телефон, email и форма обратной связи.">
+    <meta name="theme-color" content="#b5d0e8">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contacts.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ========== ШАПКА ========== -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="heart">♡</span>
+                Чистый <span class="accent">Лист</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="icon">🌙</span> Тёмная
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
+    <main class="container">
+        <div class="contacts-header">
+            <h1>Контакты</h1>
+            <p>Мы всегда на связи — напишите нам, и мы ответим в ближайшее время</p>
+        </div>
+
+        <div class="contacts-wrapper">
+            <!-- Контактная информация -->
+            <div class="contact-info">
+                <div class="card">
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <div class="info">
+                            <div class="label">Адрес</div>
+                            <div class="value">г. Москва, ул. Арбат, 10</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <div class="info">
+                            <div class="label">Телефон</div>
+                            <div class="value">+7 (999) 123-45-67</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">✉️</span>
+                        <div class="info">
+                            <div class="label">Email</div>
+                            <div class="value">hello@chistylist.ru</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🕒</span>
+                        <div class="info">
+                            <div class="label">Режим работы</div>
+                            <div class="value">Ежедневно 10:00 – 20:00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Социальные сети -->
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram">📱</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="VK">🖥️</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+
+                <!-- Карта (заглушка) -->
+                <div class="map-placeholder">
+                    <span class="icon">🗺️</span>
+                    <p>Интерактивная карта</p>
+                    <p style="font-size: 0.85rem; margin-top: 4px;">Москва, ул. Арбат, 10</p>
+                </div>
+            </div>
+
+            <!-- Форма обратной связи -->
+            <div class="contact-form">
+                <div class="card">
+                    <h2>Написать нам</h2>
+                    <p class="subtitle">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Имя <span class="required">*</span></label>
+                            <input type="text" id="name" placeholder="Анастасия" required>
+                            <div class="error-message" id="nameError">Минимум 2 символа</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="hello@example.com" required>
+                            <div class="error-message" id="emailError">Введите корректный email</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Сообщение <span class="required">*</span></label>
+                            <textarea id="message" placeholder="Расскажите, что ищете..." required></textarea>
+                            <div class="error-message" id="messageError">Минимум 5 символов</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            ✉️ Отправить сообщение
+                        </button>
+
+                        <div class="success-message" id="successMessage">
+                            ✅ Спасибо! Мы свяжемся с вами в ближайшее время.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== ФУТЕР ========== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span class="heart">♡</span> Чистый Лист — эксклюзивная канцелярия</p>
+        </div>
+    </footer>
+
+    <!-- ========== СКРИПТЫ ========== -->
+    <script src="js/script.js"></script>
+</body>
+</html>

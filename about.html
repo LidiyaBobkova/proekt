@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — Чистый Лист</title>
+    <meta name="description" content="История, миссия и достижения магазина эксклюзивной канцелярии Чистый Лист.">
+    <meta name="theme-color" content="#b5d0e8">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ========== ШАПКА ========== -->
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="heart">♡</span>
+                Чистый <span class="accent">Лист</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html" class="active">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="icon">🌙</span> Тёмная
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
+    <main class="container">
+        <section class="about-hero">
+            <div class="about-image">
+                <span>📚</span>
+            </div>
+            <div class="about-content">
+                <span class="ribbon" style="margin-bottom: 12px;">✦ О нас</span>
+                <h1>История <span style="color: var(--accent-dark);">Чистого Листа</span></h1>
+                <p class="subtitle">
+                    Мы начали свой путь в маленькой мастерской, где вручную подбирали каждую ручку и блокнот.
+                </p>
+                <p>
+                    Сегодня «Чистый Лист» — это пространство для тех, кто ценит качество, эстетику и вдохновение.
+                    Мы сотрудничаем с лучшими мировыми производителями эксклюзивной канцелярии.
+                </p>
+                <p>
+                    <span class="heart-icon">♡</span> Наша миссия — делать каждый день чуточку прекраснее.
+                </p>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">лет на рынке</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">эксклюзивных позиций</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">450</div>
+                <div class="stat-label">довольных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">38</div>
+                <div class="stat-label">авторских коллекций</div>
+            </div>
+        </section>
+
+        <!-- Достижения -->
+        <section>
+            <h2 style="font-size: 1.6rem; font-weight: 500; margin-bottom: 20px;">Наши достижения</h2>
+            <div class="achievements">
+                <div class="achievement">
+                    <span class="icon">🏆</span>
+                    <span class="text"><strong>Премия «Дизайн года 2024»</strong></span>
+                </div>
+                <div class="achievement">
+                    <span class="icon">⭐</span>
+                    <span class="text"><strong>4.9/5</strong> на основе отзывов</span>
+                </div>
+                <div class="achievement">
+                    <span class="icon">📦</span>
+                    <span class="text"><strong>100%</strong> успешных доставок</span>
+                </div>
+                <div class="achievement">
+                    <span class="icon">🌍</span>
+                    <span class="text"><strong>Поставки</strong> из 15 стран</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Команда -->
+        <section class="team-section">
+            <h2 style="font-size: 1.6rem; font-weight: 500; margin-bottom: 20px;">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="avatar">👩</div>
+                    <div class="name">Анастасия Воронцова</div>
+                    <div class="role">Основатель, коллекционер</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">👨</div>
+                    <div class="name">Игорь Смирнов</div>
+                    <div class="role">Эксперт по канцелярии</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">👩</div>
+                    <div class="name">Мария Коваль</div>
+                    <div class="role">Дизайнер упаковки</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">👨</div>
+                    <div class="name">Алексей Морозов</div>
+                    <div class="role">Куратор коллекций</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== ФУТЕР ========== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span class="heart">♡</span> Чистый Лист — эксклюзивная канцелярия</p>
+        </div>
+    </footer>
+
+    <!-- ========== СКРИПТЫ ========== -->
+    <script src="js/script.js"></script>
+</body>
+</html>
